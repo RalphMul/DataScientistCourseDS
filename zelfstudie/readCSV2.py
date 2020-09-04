@@ -11,8 +11,17 @@ with open('family.csv', 'r') as file:
     csv_reader = csv.reader(file, delimiter=',')
     line_count = 0
     gender = 'Female'
-    print (gender)
+    #print ('gender: ' + (gender))
+    Rownumber = 1
+    enumber = 1
     for row in csv_reader:
-        for e in row:
-            if str(e) == gender:
-                print(row)
+        if str(row) == gender:
+            print('gender = female: ' + str(row))
+        #print('Rownumber: ' + str(Rownumber))
+        #print(row)
+        Rownumber = Rownumber + 1
+        #for e in row:
+            #print('enumber: ' + str(enumber) + ' ' + str(e) + ':')
+            #enumber = enumber + 1
+            #if str(e) == gender:
+                #print('gender = Female: ' + str(row))
