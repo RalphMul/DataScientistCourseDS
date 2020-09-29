@@ -8,15 +8,21 @@ Version 0.1
 """
 import pandas as pd
 import numpy as np
-Covidfile = pd.read_csv('COVID-19_casus_landelijk_RM.csv', sep=';')
+Covidfile = pd.read_csv('COVID-19_casus_landelijk.csv', sep=';')
+
+'''
+Recreate Agegroup 10-19 because microsoft interpretes it as 01-okt-19
+'''
+Covidfile = Covidfile.replace("okt-19","10-19")
 
 '''
 Create pivot table for province = NH
 '''
 
 NH = Covidfile[Covidfile.Province == 'Noord-Holland']
-NH = pd.DataFrame(NH[['Province','Covid_count_source','Sex']])
-print(NH)
-NH = pd.pivot_table(NH, index=['Covid_count_source'], aggfunc=pd.Series.nunique)
+NH = pd.DataFrame(NH[['Province','Hospital_admission','Sex']])
+NH = NH.pivot_table(index='Province', columns='Hospital_admission', values='Sex')
+
+#NH = pd.pivot_table(NH, index=['Hospital_admission'], aggfunc=pd.Series.nunique)
 
 print(NH)

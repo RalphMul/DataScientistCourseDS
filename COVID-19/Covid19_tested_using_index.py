@@ -8,21 +8,75 @@ Date: 25-09-2020
 Version 0.1
 """
 import pandas as pd
-Covidfile = pd.read_csv('COVID-19_casus_landelijk_RM.csv', sep=';')
+Covidfile = pd.read_csv('COVID-19_casus_landelijk.csv', sep=';')
+'''
+Recreate Agegroup 10-19 because microsoft interpretes it as 01-okt-19
+'''
+Covidfile = Covidfile.replace("okt-19","10-19")
 
 '''
-Count number of tested persons in NH deviated to sex
+Fill out blanks with Unknown
 '''
+Covidfile = Covidfile.replace("", "Uknown")
 
+
+'''
+Filter for NH & Select columns Province','Hospital_admission','Sex','Agegroup and rename them to NH
+'''
 NH = Covidfile[Covidfile.Province == 'Noord-Holland']
 #sexNH = sexNH[sexNH.Covid_count_source == 'Yes']
-NH = pd.DataFrame(NH[['Province','Covid_count_source','Sex']])
-NH = NH.rename(columns = {'Province':'Province NH','Covid_count_source':'hospitalisedNH' })
-NHSex = NH.set_index(["Sex", "hospitalisedNH"]).count(level="Sex")
+NH = pd.DataFrame(NH[['Province','Hospital_admission','Sex','Agegroup']])
+NH = NH.rename(columns = {'Province':'Province NH','Hospital_admission':'hospitalisedNH','Agegroup':'AgeGroupNH' })
+
+'''
+Recreate Agegroup 10-19 because microsoft interpretes it as 01-okt-19
+'''
+
+
+'''
+Count number of tested persons in NH deviated to sex, hosptilised and Agegroup#
+'''
+NHSex = NH.set_index(["AgeGroupNH"],drop=True)
+NHSex = NHSex.set_index(["Sex", "hospitalisedNH"]).count(level="Sex")
+NHHospital = NH.set_index(["AgeGroupNH"],drop=True)
+NHHospital = NHHospital.set_index(["Sex", "hospitalisedNH"]).count(level="hospitalisedNH")
+NHAgeGroup = NH.set_index(["Sex"],drop=True)
+NHAgeGroup = NHAgeGroup.set_index(["hospitalisedNH","AgeGroupNH"]).count(level="AgeGroupNH")
+
+'''
+sum column
+'''
+NHSexTotal = NHSex.sum()
+NHHospitalTotal = NHHospital.sum()
+NHAgeGroupTotal = NHAgeGroup.sum()
+
+
+'''
+print result
+'''
+
 print(NHSex)
-NHHospital = NH.set_index(["Sex", "hospitalisedNH"]).count(level="hospitalisedNH")
-#nbrsexNH = nbrsexNH.rename(columns = {'Province':'Province NH'})
+print(NHSexTotal)
 print(NHHospital)
+print(NHHospitalTotal)
+print(NHAgeGroup)
+print(NHAgeGroupTotal)
+
+'''
+Create csv file
+
+'''
+NHSex.to_csv('nh.csv')
+NHHospital.to_csv('nh.csv',mode='a')
+NHAgeGroup.to_csv('nh.csv',mode='a')
+
+'''
+How to drop a column example:
+NHSex = NH.set_index(["AgeGroupNH"],drop=True)
+NHHospital = NH.set_index(["AgeGroupNH"],drop=True)
+NHAgeGroup = NH.set_index(["Sex"],drop=True)
+'''
+
 #hospitalisedNH = pd.DataFrame(NH[['Province','Covid_count_source','Sex']])
 #hospitalisedNH = hospitalisedNH.rename(columns = {'Covid_count_source':'hospitalisedNH', 'Province':'Province NH'})
 #hospitalisedNH = hospitalisedNH.set_index(["Sex", "hospitalisedNH"]).count(level="hospitalisedNH")
