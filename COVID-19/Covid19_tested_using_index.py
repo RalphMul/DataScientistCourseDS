@@ -17,7 +17,7 @@ Covidfile = Covidfile.replace("okt-19","10-19")
 '''
 Fill out blanks with Unknown
 '''
-Covidfile = Covidfile.replace("", "Uknown")
+Covidfile['Hospital_admission'] = Covidfile['Hospital_admission'].fillna('Unknown')
 
 
 '''
