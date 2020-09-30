@@ -98,6 +98,12 @@ plt.show()
 
 '''
 
+'''
+first convert column AgegroupNH to string
+'''
+print('finding the keys')
+print(NHAgeGroup.keys())
+NHAgeGroup['AgeGroupNH'] = NHAgeGroup['AgeGroupNH'].astype(str)
 
 '''
 plotting the points
