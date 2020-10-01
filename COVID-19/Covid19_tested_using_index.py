@@ -1,12 +1,13 @@
 """
 Autor: Ralph Mul
 File name: Covid_tested_using_index.py
-Info: first attemt to read csv file using panda and extract data and finally create graph with the data extracted
-https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.set_index.html
+File Info: first attemt to read csv file using panda and extract data and finally create graph with the data extracted
+use index: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.set_index.html
 rename option: https://www.datacamp.com/community/tutorials/python-rename-column?utm_source=adwords_ppc&utm_campaignid=898687156&utm_adgroupid=48947256715&utm_device=c&utm_keyword=&utm_matchtype=b&utm_network=g&utm_adpostion=&utm_creative=332602034352&utm_targetid=dsa-429603003980&utm_loc_interest_ms=&utm_loc_physical_ms=9064573&gclid=Cj0KCQjwqrb7BRDlARIsACwGad5ZsIpHQwmFpuna2CDNW4O0LLoh8Q1O2qkJCyHREKnRPjlGvqec_dcaAso0EALw_wcB
 Graph: https://www.geeksforgeeks.org/graph-plotting-in-python-set-1/
 use dataframe for graph: https://datatofish.com/plot-dataframe-pandas/
 Read dataframe form csv file: https://www.geeksforgeeks.org/creating-a-dataframe-using-csv-files/
+drop a row or column: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.drop.html
 Date: 30-09-2020
 Version 0.9
 """
@@ -103,23 +104,28 @@ first convert column AgegroupNH to string
 '''
 print('finding the keys')
 print(NHAgeGroup.keys())
-NHAgeGroup['AgeGroupNH'] = NHAgeGroup['AgeGroupNH'].astype(str)
+#NHAgeGroup['AgeGroupNH'] = NHAgeGroup['AgeGroupNH'].astype(str)
 
 '''
 plotting the points
+but first create a list from the index as defined in line 54 & 55
 '''
 #df = NHAgeGroup(NHAgeGroup,columns=["AgeGroupNH","Province NH"])
-NHAgeGroup.plot(x = 'AgeGroupNH', y = 'Province NH', kind = "line" )
+NHAgeGroup['AgeGroup'] = NHAgeGroup.index.tolist()
+NHAgeGroup.drop(index=['<50','Unknown'],inplace=True)
+print(NHAgeGroup)
+NHAgeGroup.plot(x = 'AgeGroup', y = 'Province NH', kind = "line" )
+
 
 '''
 naming the x axis
 '''
-plt.xlabel('x - number of Covid-19 people')
+plt.xlabel('age group')
 
 '''
 naming the y axis
 '''
-plt.ylabel('y - age group')
+plt.ylabel('number of Covid-19 people')
 
 '''
 giving a title to my graph

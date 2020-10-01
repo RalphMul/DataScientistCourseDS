@@ -1,0 +1,78 @@
+<html>
+  <head>
+    <title>Export Index</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+    <style>body {
+  padding-left: 10px;
+}
+p.abstract {
+  font-style: italic;
+}
+.entry {
+  padding: 20px;
+  margin: 20px 0;
+  border: 1px solid #eee;
+  border-left-width: 5px;
+  border-radius: 3px;
+  border-left-color: #1b809e;
+}
+.entry:hover {
+  background-color: #f5f5f5;
+}</style>
+  </head>
+  <body>
+    <div class="entry">
+      <h4 class="title">
+        <a href="2c4357c8-76e4-4662-9574-1deb8a73f724">Covid-19 karakteristieken per casus landelijk</a>
+      </h4>
+      <p class="abstract">Dit bestand bevat de volgende karakteristieken per positief geteste casus in Nederland:
+Datum voor statistiek, Leeftijdsgroep, Geslacht, Ziekenhuisopname, Overlijden, Week van overlijden, Provincie, Meldende GGD
+
+Het bestand is als volgt opgebouwd: Een record voor elke laboratorium bevestigde COVID-19 patiënt in Nederland, sinds de eerste COVID-19 melding in Nederland op 27/02/2020 (Datum voor statistiek kan eerder zijn). Het bestand wordt dagelijks om 16:00 ververst, op basis van de gegevens zoals op 10:00 uur die dag geregistreerd staan in het landelijk systeem voor meldingsplichtige infectieziekten (Osiris AIZ).
+
+Beschrijving van de variabelen
+
+Date_file: Datum en tijd waarop de gegevens zijn gepubliceerd door het RIVM
+
+Date_statistics: Datum voor statistiek; eerste ziektedag, indien niet bekend, datum lab positief, indien niet bekend, melddatum aan GGD (formaat: jjjj-mm-dd)
+
+Date_statistics_type: Soort datum die beschikbaar was voor datum voor de variabele "Datum voor statistiek", waarbij:
+DOO = Date of disease onset : Eerste ziektedag zoals gemeld door GGD. Let op: het is niet altijd bekend of deze eerste ziektedag ook echt al Covid-19 betrof.
+DPL = Date of first Positive Labresult : Datum van de (eerste) positieve labuitslag. 
+DON = Date of Notification : Datum waarop de melding bij de GGD is binnengekomen.
+
+Agegroup: Leeftijdsgroep bij leven; 0-9, 10-19, ..., 90+; bij overlijden &amp;lt;50, 50-59, 60-69, 70-79, 80-89, 90+, Unknown = Onbekend
+
+Sex: Geslacht; Unknown = Onbekend, Male = Man, Female = Vrouw
+
+Province: Naam van de provincie (op basis van de verblijfplaats van de patiënt)
+
+Hospital_admission: Ziekenhuisopname. Unknown = Onbekend, Yes = Ja, No = Nee
+Vanaf 1 mei 2020 wordt uitgevraagd of de indicatie van de ziekenhuisopname Covid-19 gerelateerd was. Indien dit niet het geval was is de waarde van deze kolom "No". 
+
+Deceased: Overlijden. Unknown = Onbekend, Yes = Ja, No = Nee
+
+Week of Death : Week van overlijden. YYYYMM volgens ISO-week notatie (start op maandag t/m zondag)
+
+Municipal_health_service: GGD die de melding heeft gedaan.</p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>UUID</th>
+            <th>Type</th>
+            <th>isHarvested</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="id">7680457</td>
+            <td class="uuid">2c4357c8-76e4-4662-9574-1deb8a73f724</td>
+            <td class="type">METADATA</td>
+            <td class="isHarvested">n</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

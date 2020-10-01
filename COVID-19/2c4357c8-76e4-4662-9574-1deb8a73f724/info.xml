@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<info version="1.1">
+  <general>
+    <createDate>2020-05-06T09:16:48</createDate>
+    <changeDate>2020-05-31T14:08:27</changeDate>
+    <schema>iso19139.nl.geografie.1.3.1</schema>
+    <isTemplate>n</isTemplate>
+    <localId>7680457</localId>
+    <format>full</format>
+    <rating>0</rating>
+    <popularity>2093</popularity>
+    <uuid>2c4357c8-76e4-4662-9574-1deb8a73f724</uuid>
+    <siteId>1ba357bb-ea8d-4486-a327-c905290a28ed</siteId>
+    <siteName>RIVM Data Catalogus</siteName>
+  </general>
+  <categories>
+    <category name="NGR" />
+  </categories>
+  <privileges>
+    <group name="all">
+      <operation name="view" />
+      <operation name="download" />
+      <operation name="notify" />
+      <operation name="featured" />
+      <operation name="dynamic" />
+    </group>
+  </privileges>
+  <public />
+  <private />
+</info>
+
